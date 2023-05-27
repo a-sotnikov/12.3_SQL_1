@@ -9,7 +9,7 @@
 
 ``` sql
 SELECT DISTINCT district FROM address 
-WHERE district like 'K%a' AND NOT district like '% %'
+WHERE district like 'K%a' AND NOT district LIKE '% %'
 ```
 
 ### Задание 2
@@ -44,7 +44,7 @@ ORDER BY rental_date DESC LIMIT 5
 ```sql
 SELECT REPLACE(LOWER(first_name), 'll', 'pp'), LOWER(last_name) 
 FROM customer 
-WHERE active=1 and first_name like 'Kelly' OR first_name like 'Willie'
+WHERE active=1 AND first_name LIKE 'Kelly' OR first_name LIKE 'Willie'
 ```
 
 ### Задание 5*
@@ -55,8 +55,8 @@ WHERE active=1 and first_name like 'Kelly' OR first_name like 'Willie'
 
 ```sql
 SELECT email, 
-LEFT(email, POSITION('@' IN email)-1) as first_part,
-SUBSTR(email, POSITION('@' IN email)+1) as second_part
+LEFT(email, POSITION('@' IN email)-1) AS first_part,
+SUBSTR(email, POSITION('@' IN email)+1) AS second_part
 FROM customer
 ```
 
@@ -67,7 +67,7 @@ FROM customer
 
 ```sql
 SELECT email, 
-INSERT(LOWER(LEFT(email, POSITION('@' IN email)-1)), 1, 1, UPPER(LEFT(email, 1))) as first_part,
-INSERT(LOWER(SUBSTR(email, POSITION('@' IN email)+1)), 1, 1, UPPER(SUBSTR(email, POSITION('@' IN email)+1, 1))) as second_part
+INSERT(LOWER(LEFT(email, POSITION('@' IN email)-1)), 1, 1, UPPER(LEFT(email, 1))) AS first_part,
+INSERT(LOWER(SUBSTR(email, POSITION('@' IN email)+1)), 1, 1, UPPER(SUBSTR(email, POSITION('@' IN email)+1, 1))) AS second_part
 FROM customer
 ```
